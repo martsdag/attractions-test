@@ -21,16 +21,16 @@ export const Table: React.FC<{ table: Table[] }> = ({ table }) => (
     <table className="min-w-full table-auto border-collapse">
       <thead>
         <tr>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Идентификатор</th>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Название</th>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Описание</th>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Дата и время добавления</th>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Рейтинг</th>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Фото</th>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Местоположение</th>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Координаты</th>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Ссылка</th>
-          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Статус</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">ID</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Name</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Description</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Date and time of addition</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Rating</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Photo</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Location</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Coordinates</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Link</th>
+          <th className="p-2 border hover:bg-zinc-300 cursor-pointer border-zinc-600">Status</th>
         </tr>
       </thead>
       <tbody>

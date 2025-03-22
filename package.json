@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-   "@reactuses/core": "^6.0.1",
+    "@reactuses/core": "^6.0.1",
     "@stylistic/eslint-plugin": "^4.2.0",
     "@tailwindcss/vite": "^4.0.15",
     "eslint-plugin-react": "^7.37.4",
@@ -22,6 +22,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
+    "@gravity-ui/icons": "^2.13.0",
+    "@gravity-ui/uikit": "^7.6.0",
     "@types/node": "^22.13.11",
     "@types/prop-types": "^15.7.14",
     "@types/react": "^19.0.12",
