@@ -1,6 +1,6 @@
 import { Home } from '@/pages/Home';
-import { Footer } from './Footer/Footer';
-import { Header } from './Header/Header';
+import { Footer } from '@/layouts/Footer/Footer';
+import { Header } from '@/layouts/Header/Header';
 
 const Layout = () => (<>
   <Header />

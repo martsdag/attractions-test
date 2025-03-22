@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "name": "Eiffel Tower",
+    "description": "A famous landmark in Paris.",
+    "createdAt": "2025-03-22",
+    "rating": 5,
+    "photo": "photo",
+    "location": "Paris, France",
+    "coordinates": { "lat": 48.8584, "lng": 2.2945 },
+    "googleMapsLink": "https://goo.gl/maps/eiffeltower",
+    "status": "planned"
+  },
+  {
+    "id": "2",
+    "name": "Great Wall of China",
+    "description": "A historic wall in China.",
+    "createdAt": "2025-03-21",
+    "rating": 4,
+    "photo": "photo",
+    "location": "China",
+    "coordinates": { "lat": 40.4319, "lng": 116.5704 },
+    "googleMapsLink": "https://goo.gl/maps/greatwall",
+    "status": "visited"
+  },
+  {
+    "id": "3",
+    "name": "Colosseum",
+    "description": "An ancient amphitheater in the center of Rome, Italy.",
+    "createdAt": "2025-03-25",
+    "rating": 5,
+    "photo": "photo",
+    "location": "Rome, Italy",
+    "coordinates": { "lat": 41.8902, "lng": 12.4922 },
+    "googleMapsLink": "https://goo.gl/maps/colosseum",
+    "status": "visited"
+  },
+  {
+    "id": "4",
+    "name": "Statue of Liberty",
+    "description": "A colossal neoclassical sculpture on Liberty Island in New York City.",
+    "createdAt": "2025-03-26",
+    "rating": 5,
+    "photo": "photo",
+    "location": "New York City, USA",
+    "coordinates": { "lat": 40.6892, "lng": -74.0445 },
+    "googleMapsLink": "https://goo.gl/maps/statueofliberty",
+    "status": "visited"
+  },
+  {
+    "id": "5",
+    "name": "Taj Mahal",
+    "description": "A white marble mausoleum in Agra, India.",
+    "createdAt": "2025-03-27",
+    "rating": 5,
+    "photo": "photo",
+    "location": "Agra, India",
+    "coordinates": { "lat": 27.1751, "lng": 78.0421 },
+    "googleMapsLink": "https://goo.gl/maps/tajmahal",
+    "status": "visited"
+  }
+]
