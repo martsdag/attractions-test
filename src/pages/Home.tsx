@@ -1,8 +1,9 @@
-import { AddAttractionModal } from '@/components/Forms/AddAttractionModal';
+import { format } from 'date-fns';
+import { CreateAttractionModal } from '@/components/Forms/CreateAttractionModal';
 import { Table } from '@/components/Table/Table';
 import type { TableItem } from '@/types';
 import { generateGoogleMapLink } from '@/utils';
-import { Pencil, EyeSlash, Plus, Person, Eye } from '@gravity-ui/icons';
+import { Pencil, EyeSlash, Plus, Person, Eye, TrashBin } from '@gravity-ui/icons';
 import { Button, Icon } from '@gravity-ui/uikit';
 import { useEffect, useState } from 'react';
 
@@ -14,6 +15,7 @@ export const Home = () => {
 
   const onClickSwitchMode = () => setIsEditMode(!isEditMode);
   const onCLickHideVisitedAttractions = () => setHideVisited((isVisitedHidden) => !isVisitedHidden);
+  const onClickDeleteTable = () => setTableData([]);
 
   const addNewAttraction = (newAttraction: {
     name: string;
@@ -21,13 +23,13 @@ export const Home = () => {
     coordinates: { lat: number; lng: number };
     location: string;
     photo: string;
-    status: string;
     rating: string;
   }) => {
     const newAttractionWithId = {
       ...newAttraction,
       id: String(tableData.length + 1),
-      createdAt: new Date().toISOString().split('T')[0] || '',
+      createdAt: format(new Date(), 'yyyy-MM-dd HH:mm '),
+      status: 'planned',
       googleMapsLink: generateGoogleMapLink(newAttraction.coordinates.lat, newAttraction.coordinates.lng),
     };
 
@@ -53,8 +55,8 @@ export const Home = () => {
 
   return (
     <div className='p-3 w-[90%] mx-auto'>
-      <div className='flex items-center justify-center flex-col gap-4'>
-        <div className='flex items-center justify-start gap-4 mr-auto '>
+      <div className='flex justify-center flex-col gap-4'>
+        <div className='flex items-center justify-start gap-4'>
           <Button view="action" size="m" className="button" onClick={onClickSwitchMode}>
             {isEditMode ? 'Edit mode' : 'User mode'}
             <Icon data={isEditMode ? Pencil : Person} size={18} />
@@ -62,20 +64,29 @@ export const Home = () => {
 
           {isEditMode && (
             <>
-              <Button view="action" size="m" className="mr-auto button" onClick={() => setIsFormVisible(true)}>
+              <Button view="action" size="m" className="button" onClick={() => setIsFormVisible(true)}>
                 <Icon data={Plus} size={18} />
               </Button>
               <Button view="action" size="m" className="button" onClick={onCLickHideVisitedAttractions}>
                 {hideVisited ? 'Show All' : 'Hide'}
                 <Icon data={hideVisited ? Eye : EyeSlash} size={18} />
               </Button>
+              <Button view="action" size="m" className="button"
+                onClick={onClickDeleteTable}
+              >
+                Delete all
+                <Icon data={TrashBin} size={18} />
+              </Button>
             </>
           )}
+          <h1 className='flex ml-auto text-xl text-zinc-800'>
+            Количество достопримечательностей: {tableData.length}
+          </h1>
         </div>
 
         <Table table={filteredData} />
 
-        {isFormVisible && <AddAttractionModal onSubmit={addNewAttraction} onCancel={onCancelForm}/>}
+        {isFormVisible && <CreateAttractionModal onSubmit={addNewAttraction} onCancel={onCancelForm}/>}
       </div>
     </div>
   );

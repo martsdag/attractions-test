@@ -4,7 +4,7 @@ import { generateGoogleMapLink } from '@/utils';
 
 const columnNames = Object.values(ColumnNames);
 
-export const Table: React.FC<{ table: TableItem[] }> = ({ table }) => (
+export const Table: React.FC<{ table: TableItem[] }> = ({ table }) =>(
   <div className="overflow-x-auto w-full">
     {table.length > 0 ? (
       <table className="min-w-full table-auto border-collapse">
@@ -29,7 +29,9 @@ export const Table: React.FC<{ table: TableItem[] }> = ({ table }) => (
               <td className="p-2 border">{item.createdAt}</td>
               <td className="p-2 border">{item.rating}</td>
               <td className="p-2 border">
-                <img src={item.photo} alt={item.name} className="h-10 w-10 object-cover" />
+                <a href={item.photo} target='_blank'>
+                  <img src={item.photo} alt={item.name} className="h-10 w-10 object-cover" />
+                </a>
               </td>
               <td className="p-2 border">{item.location}</td>
               <td className="p-2 border">

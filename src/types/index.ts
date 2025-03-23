@@ -14,6 +14,7 @@ export enum ColumnNames {
   Coordinates = 'Coordinates',
   Link = 'Link',
   Status = 'Status',
+  Actions = 'Actions',
 }
 
 export interface TableItem {

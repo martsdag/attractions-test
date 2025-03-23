@@ -10,6 +10,6 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider theme="light">
       <Layout />
-    </ThemeProvider>,
+    </ThemeProvider>
   </StrictMode>,
 );
