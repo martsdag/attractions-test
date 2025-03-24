@@ -80,7 +80,7 @@ export const Home = () => {
             </>
           )}
           <h1 className='flex ml-auto text-xl text-zinc-800'>
-            Количество достопримечательностей: {tableData.length}
+            Количество достопримечательностей: {filteredData.length} / {tableData.length}
           </h1>
         </div>
 
