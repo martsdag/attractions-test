@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { CreateAttractionModal } from '@/components/Forms/CreateAttractionModal';
+import { AttractionFormModal } from '@/components/Modal/AttractionFormModal';
 import { Table } from '@/components/Table/Table';
 import type { TableItem } from '@/types';
 import { generateGoogleMapLink } from '@/utils';
@@ -84,9 +84,9 @@ export const Home = () => {
           </h1>
         </div>
 
-        <Table table={filteredData} />
+        <Table table={filteredData} isEditMode={isEditMode} setTableData={setTableData} />
 
-        {isFormVisible && <CreateAttractionModal onSubmit={addNewAttraction} onCancel={onCancelForm}/>}
+        {isFormVisible && <AttractionFormModal onSubmit={addNewAttraction} onCancel={onCancelForm}/>}
       </div>
     </div>
   );

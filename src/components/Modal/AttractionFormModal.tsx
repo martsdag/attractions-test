@@ -2,7 +2,7 @@ import { Xmark } from '@gravity-ui/icons';
 import { Button, Icon, TextInput } from '@gravity-ui/uikit';
 import React, { useState } from 'react';
 
-interface AttractionModalProps {
+interface AttractionFormModalProps {
   onSubmit: (addAttraction : {
     name: string;
     description: string;
@@ -14,7 +14,7 @@ interface AttractionModalProps {
   onCancel: () => void
 };
 
-export const CreateAttractionModal: React.FC<AttractionModalProps> = ({ onSubmit, onCancel }) => {
+export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ onSubmit, onCancel }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
