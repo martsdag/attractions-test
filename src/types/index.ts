@@ -32,3 +32,12 @@ export interface TableItem {
   googleMapsLink: string;
   status: string;
 }
+
+export interface Attraction {
+  name: string;
+  description: string;
+  coordinates: { lat: number; lng: number };
+  location: string;
+  photo: string;
+  rating: string;
+}

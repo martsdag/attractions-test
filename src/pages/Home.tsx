@@ -79,9 +79,9 @@ export const Home = () => {
               </Button>
             </>
           )}
-          <h1 className='flex ml-auto text-xl text-zinc-800'>
+          <p className='flex ml-auto text-lg text-zinc-800'>
             Количество достопримечательностей: {filteredData.length} / {tableData.length}
-          </h1>
+          </p>
         </div>
 
         <Table table={filteredData} isEditMode={isEditMode} setTableData={setTableData} />

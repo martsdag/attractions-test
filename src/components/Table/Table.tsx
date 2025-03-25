@@ -1,8 +1,10 @@
 import type React from 'react';
-import { ColumnNames, type TableItem } from '@/types';
+import { ColumnNames, type Attraction, type TableItem } from '@/types';
 import { generateGoogleMapLink } from '@/utils';
 import { Button, Icon } from '@gravity-ui/uikit';
 import { Pencil, TrashBin } from '@gravity-ui/icons';
+import { useState } from 'react';
+import { AttractionFormModal } from '../Modal/AttractionFormModal';
 
 export const Table: React.FC<{
   table: TableItem[],
@@ -10,13 +12,27 @@ export const Table: React.FC<{
   setTableData: React.Dispatch<React.SetStateAction<TableItem[]>> }> = ({ table, isEditMode, setTableData }) => {
 
   const columnNames = Object.values(ColumnNames).filter((column) => isEditMode || column !== ColumnNames.Actions);
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [selectedAttraction, setSelectedAttraction] = useState<TableItem | null>(null);
 
-  const onClickEdit = () => {
-    console.log ('edit item');
+  const onClickEdit = (attraction: TableItem) => {
+    setSelectedAttraction(attraction);
+    setIsFormVisible(true);
   };
 
   const onClickDelete = (id: string) => {
-    setTableData((prevData) => prevData.filter((item) => item.id !== id));
+    setTableData((previousTableData) => previousTableData.filter((item) => item.id !== id));
+  };
+
+  const onCancelForm = () => {
+    setSelectedAttraction(null);
+    setIsFormVisible(false);
+  };
+
+  const submitUpdatedAttraction = (attraction: Attraction) => {
+    setTableData((previousTableData)=> previousTableData.map((item)=> item.id === selectedAttraction?.id
+      ? { ...item, ...attraction, id:item.id, createdAt: item.createdAt } : item));
+    onCancelForm();
   };
 
   return (
@@ -61,7 +77,7 @@ export const Table: React.FC<{
 
                 {isEditMode && (
                   <td className="p-2 flex justify-evenly gap-2">
-                    <Button className="button" view="normal" size="s" onClick={onClickEdit}>
+                    <Button className="button" view="normal" size="s" onClick={() => onClickEdit(item)}>
                       <Icon data={Pencil} size={18} />
                     </Button>
                     <Button className="button" view="normal" size="s" onClick={() => onClickDelete(item.id)}>
@@ -76,7 +92,9 @@ export const Table: React.FC<{
       ) : (
         <p className="text-center p-4">No data available</p>
       )}
+      {isFormVisible && (<AttractionFormModal attraction={selectedAttraction ?? undefined}
+        onSubmit={submitUpdatedAttraction}
+        onCancel={onCancelForm}/>)}
     </div>
   );
 };
-

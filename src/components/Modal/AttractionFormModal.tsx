@@ -1,20 +1,15 @@
+import type { Attraction } from '@/types';
 import { Xmark } from '@gravity-ui/icons';
 import { Button, Icon, TextInput } from '@gravity-ui/uikit';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface AttractionFormModalProps {
-  onSubmit: (addAttraction : {
-    name: string;
-    description: string;
-    coordinates: { lat: number; lng: number };
-    location: string;
-    photo: string;
-    rating: string;
-  }) => void
+  attraction?: Attraction;
+  onSubmit: (attraction: Attraction) => void
   onCancel: () => void
 };
 
-export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ onSubmit, onCancel }) => {
+export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ attraction, onSubmit, onCancel }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
@@ -22,23 +17,34 @@ export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ onSubm
   const [photo, setPhoto] = useState('');
   const [rating, setRating] = useState('');
 
+  useEffect(()=> {
+    if (attraction) {
+      setName(attraction.name);
+      setDescription(attraction.description);
+      setCoordinates(attraction.coordinates);
+      setLocation(attraction.location);
+      setPhoto(attraction.photo);
+      setRating(attraction.rating);
+    } else {
+      setName('');
+      setDescription('');
+      setCoordinates({ lat: 0, lng: 0 });
+      setLocation('');
+      setPhoto('');
+      setRating('');
+    }
+  }, [attraction]);
+
   const onClickSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit ({
-      name,
-      description,
-      coordinates: { lat: coordinates.lat, lng: coordinates.lng },
-      location,
-      photo,
-      rating,
-    });
+    onSubmit({ name, description, coordinates, location, photo, rating });
   };
 
-  const handleCoordinateChange = (e: React.ChangeEvent<HTMLInputElement>, axis: 'lat' | 'lng') => {
+  const updateCoordinates = (e: React.ChangeEvent<HTMLInputElement>, axis: 'lat' | 'lng') => {
     const value = e.target.value;
     const newCoordinate = value ? parseFloat(value) : 0;
 
-    setCoordinates((prevCoordinates) => ({ ...prevCoordinates, [axis]: newCoordinate }));
+    setCoordinates((previousCoordinates) => ({ ...previousCoordinates, [axis]: newCoordinate }));
   };
 
   return (
@@ -69,13 +75,13 @@ export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ onSubm
           label="Latitude:"
           type='number'
           value={coordinates.lat.toString()}
-          onChange={(e) => handleCoordinateChange(e, 'lat')}
+          onChange={(e) => updateCoordinates(e, 'lat')}
         />
         <TextInput
           label="Longitude:"
           type='number'
           value={coordinates.lng.toString()}
-          onChange={(e) => handleCoordinateChange(e, 'lng')}
+          onChange={(e) => updateCoordinates(e, 'lng')}
         />
         <TextInput
           label="Location:"
@@ -87,7 +93,7 @@ export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ onSubm
           value={photo}
           onChange={(e) => setPhoto(e.target.value)}
         />
-        <Button type="submit" view="action" className='button' size="m">Submit</Button>
+        <Button type="submit" view="action" className='button' size="m">{attraction ? 'Update' : 'Add'}</Button>
         <Button view="normal" size="m" onClick={onCancel}>Cancel</Button>
       </form>
     </dialog>
