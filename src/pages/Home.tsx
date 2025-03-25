@@ -47,10 +47,6 @@ export const Home = () => {
       item.description.toLowerCase().includes(searchQuery.toLowerCase()),
     );
 
-  const onCancelForm = () => {
-    setIsFormVisible(false);
-  };
-
   useEffect(() => {
     fetch('/data.json')
       .then((response) => response.json())
@@ -94,7 +90,9 @@ export const Home = () => {
 
         <Table table={filteredData} isEditMode={isEditMode} setTableData={setTableData} />
 
-        {isFormVisible && <AttractionFormModal onSubmit={addNewAttraction} onCancel={onCancelForm}/>}
+        {isFormVisible && (
+          <AttractionFormModal isOpen={isFormVisible} setIsOpen={setIsFormVisible} onSubmit={addNewAttraction} />
+        )}
       </div>
     </div>
   );

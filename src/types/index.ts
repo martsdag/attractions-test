@@ -1,8 +1,3 @@
-export enum Status {
-  Planned = 'Planned',
-  Seen = 'Seen',
-}
-
 export enum ColumnNames {
   Id = 'Id',
   Name = 'Name',
@@ -40,4 +35,5 @@ export interface Attraction {
   location: string;
   photo: string;
   rating: string;
+  status: 'visited' | 'planned';
 }

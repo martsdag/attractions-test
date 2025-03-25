@@ -1,21 +1,27 @@
 import type { Attraction } from '@/types';
 import { Xmark } from '@gravity-ui/icons';
-import { Button, Icon, TextInput } from '@gravity-ui/uikit';
+import { Button, Icon, Modal, Select, TextInput } from '@gravity-ui/uikit';
 import React, { useEffect, useState } from 'react';
 
 interface AttractionFormModalProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
   attraction?: Attraction;
   onSubmit: (attraction: Attraction) => void
-  onCancel: () => void
 };
 
-export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ attraction, onSubmit, onCancel }) => {
+export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({
+  attraction,
+  onSubmit,
+  isOpen,
+  setIsOpen }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
   const [location, setLocation] = useState('');
   const [photo, setPhoto] = useState('');
   const [rating, setRating] = useState('');
+  const [status, setStatus] = useState<'visited' | 'planned'>('planned');
 
   useEffect(()=> {
     if (attraction) {
@@ -25,6 +31,7 @@ export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ attrac
       setLocation(attraction.location);
       setPhoto(attraction.photo);
       setRating(attraction.rating);
+      setStatus(attraction.status || 'planned');
     } else {
       setName('');
       setDescription('');
@@ -37,7 +44,7 @@ export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ attrac
 
   const onClickSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ name, description, coordinates, location, photo, rating });
+    onSubmit({ name, description, coordinates, location, photo, rating, status });
   };
 
   const updateCoordinates = (e: React.ChangeEvent<HTMLInputElement>, axis: 'lat' | 'lng') => {
@@ -48,9 +55,9 @@ export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ attrac
   };
 
   return (
-    <dialog className='fixed inset-0 flex flex-col gap-4 p-4 border border-gray-500 rounded-lg w-lg overflow-x-hidden outline-[0.125rem] outline-transparent outline-offset-[0.125rem] bg-white m-auto'>
-      <form className='flex flex-col h-full w-full form-scroll gap-4' onSubmit={onClickSubmit}>
-        <Button view="action" size="xs" className="button ml-auto" onClick={onCancel}>
+    <Modal open={isOpen} onOpenChange={() => setIsOpen(false)}>
+      <form className='flex flex-col gap-4 p-6' onSubmit={onClickSubmit}>
+        <Button view="action" size="xs" className="ml-auto button" onClick={() => setIsOpen(false)}>
           <Icon data={Xmark} size={18} />
         </Button>
         <TextInput
@@ -93,9 +100,21 @@ export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({ attrac
           value={photo}
           onChange={(e) => setPhoto(e.target.value)}
         />
+        {attraction && (
+          <Select
+            label='Status:'
+            multiple={false}
+            options={[
+              { value: 'planned', content: 'Planned' },
+              { value: 'visited', content: 'Visited' },
+            ]}
+            value={[status]}
+            onUpdate={(value) => setStatus(value[0] as 'visited' | 'planned')}
+          />
+        )}
         <Button type="submit" view="action" className='button' size="m">{attraction ? 'Update' : 'Add'}</Button>
-        <Button view="normal" size="m" onClick={onCancel}>Cancel</Button>
+        <Button view="normal" size="m" onClick={() => setIsOpen(false)}>Cancel</Button>
       </form>
-    </dialog>
+    </Modal>
   );
 };

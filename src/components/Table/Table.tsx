@@ -92,9 +92,16 @@ export const Table: React.FC<{
       ) : (
         <p className="text-center p-4">No data available</p>
       )}
-      {isFormVisible && (<AttractionFormModal attraction={selectedAttraction ?? undefined}
-        onSubmit={submitUpdatedAttraction}
-        onCancel={onCancelForm}/>)}
+      {isFormVisible && (
+        <AttractionFormModal
+          attraction={selectedAttraction
+            ? { ...selectedAttraction, status: selectedAttraction.status as 'visited' | 'planned' }
+            : undefined}
+          onSubmit={submitUpdatedAttraction}
+          isOpen={isFormVisible}
+          setIsOpen={setIsFormVisible}
+        />
+      )}
     </div>
   );
 };
