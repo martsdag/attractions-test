@@ -4,7 +4,7 @@ import { generateGoogleMapLink } from '@/utils';
 import { Button, Icon } from '@gravity-ui/uikit';
 import { Pencil, TrashBin } from '@gravity-ui/icons';
 import { useState } from 'react';
-import { AttractionFormModal } from '../Modal/AttractionFormModal';
+import { AttractionFormModal } from '@/components/Modal/AttractionFormModal';
 
 export const Table: React.FC<{
   table: TableItem[],

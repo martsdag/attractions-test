@@ -6,12 +6,14 @@ import { generateGoogleMapLink } from '@/utils';
 import { Pencil, EyeSlash, Plus, Person, Eye, TrashBin } from '@gravity-ui/icons';
 import { Button, Icon } from '@gravity-ui/uikit';
 import { useEffect, useState } from 'react';
+import { SearchBar } from '@/components/Searchbar/SearchBar';
 
 export const Home = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [tableData, setTableData] = useState<TableItem[]>([]);
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [hideVisited, setHideVisited] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const onClickSwitchMode = () => setIsEditMode(!isEditMode);
   const onCLickHideVisitedAttractions = () => setHideVisited((isVisitedHidden) => !isVisitedHidden);
@@ -38,9 +40,12 @@ export const Home = () => {
     setIsFormVisible(false);
   };
 
-  const filteredData = hideVisited
-    ? tableData.filter((item) => item.status !== 'visited')
-    : tableData;
+  const filteredData = tableData
+    .filter((item) => (hideVisited ? item.status !== 'visited' : true))
+    .filter((item) =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
 
   const onCancelForm = () => {
     setIsFormVisible(false);
@@ -56,6 +61,9 @@ export const Home = () => {
   return (
     <div className='p-3 w-[90%] mx-auto'>
       <div className='flex justify-center flex-col gap-4'>
+        <div className="flex items-center justify-center px-4 gap-4">
+          <SearchBar onChange={(e) => setSearchQuery(e.target.value)} />
+        </div>
         <div className='flex items-center justify-start gap-4'>
           <Button view="action" size="m" className="button" onClick={onClickSwitchMode}>
             {isEditMode ? 'Edit mode' : 'User mode'}
