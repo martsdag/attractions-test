@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "name": "Eiffel Tower",
+    "description": "A famous landmark in Paris.",
+    "createdAt": "2025-03-22 15:40",
+    "rating": 5,
+    "photo": "https://i.pinimg.com/originals/ab/55/d7/ab55d75410da8ca680e2ebbc0ea3119c.jpg",
+    "location": "Paris, France",
+    "coordinates": { "lat": 48.8584, "lng": 2.2945 },
+    "googleMapsLink": "https://goo.gl/maps/eiffeltower",
+    "status": "planned"
+  },
+  {
+    "id": "2",
+    "name": "Great Wall of China",
+    "description": "A historic wall in China.",
+    "createdAt": "2025-03-21 15:40",
+    "rating": 4,
+    "photo": "https://cdn.getyourguide.com/img/location/5457947d8d6b8.jpeg/88.jpg",
+    "location": "China",
+    "coordinates": { "lat": 40.4319, "lng": 116.5704 },
+    "googleMapsLink": "https://goo.gl/maps/greatwall",
+    "status": "visited"
+  },
+  {
+    "id": "3",
+    "name": "Colosseum",
+    "description": "An ancient amphitheater in the center of Rome, Italy.",
+    "createdAt": "2025-03-25 15:40",
+    "rating": 5,
+    "photo": "https://panorama.pub/storage/77/9e/ae0d26b9b6ca70ea3b2d772dd84f/previews/9387-meta-image-1600.jpg",
+    "location": "Rome, Italy",
+    "coordinates": { "lat": 41.8902, "lng": 12.4922 },
+    "googleMapsLink": "https://goo.gl/maps/colosseum",
+    "status": "visited"
+  },
+  {
+    "id": "4",
+    "name": "Statue of Liberty",
+    "description": "A colossal neoclassical sculpture on Liberty Island in New York City.",
+    "createdAt": "2025-03-26 15:40",
+    "rating": 5,
+    "photo": "https://avatars.mds.yandex.net/i?id=c1336a3b4677e3e250e5018c72ce380a_l-12319474-images-thumbs&n=13",
+    "location": "New York City, USA",
+    "coordinates": { "lat": 40.6892, "lng": -74.0445 },
+    "googleMapsLink": "https://goo.gl/maps/statueofliberty",
+    "status": "visited"
+  },
+  {
+    "id": "5",
+    "name": "Taj Mahal",
+    "description": "A white marble mausoleum in Agra, India.",
+    "createdAt": "2025-03-27 15:40",
+    "rating": 5,
+    "photo": "https://i.pinimg.com/originals/b8/73/84/b873844934d88257c0cdf52400074b3c.jpg",
+    "location": "Agra, India",
+    "coordinates": { "lat": 27.1751, "lng": 78.0421 },
+    "googleMapsLink": "https://goo.gl/maps/tajmahal",
+    "status": "visited"
+  }
+]

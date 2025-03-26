@@ -1,11 +1,11 @@
-import { Footer } from './Footer/Footer';
-import { Header } from './Header/Header';
-import { Component } from 'react';
+import { Home } from '@/pages/Home';
+import { Footer } from '@/layouts/Footer/Footer';
+import { Header } from '@/layouts/Header/Header';
 
 const Layout = () => (<>
   <Header />
   <main>
-    <Component/>
+    <Home/>
   </main>
   <Footer />
 </>
