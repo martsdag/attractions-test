@@ -24,15 +24,6 @@ body {
   color: var(--color-zinc-800);
 }
 
-.cell-table {
-  padding: 0.5rem;
-  border: 1px solid var(--color-zinc-600);
-
-  &:hover {
-    background-color: var(--color-white);
-  }
-}
-
 .button {
   --g-button-text-color: var(--color-white);
   --g-button-background-color: var(--color-zinc-900);
@@ -57,8 +48,4 @@ input[type="number"]:hover,
 input[type="number"]:focus {
     appearance: none;
     -moz-appearance: textfield;
-}
-
-.form-scroll {
-  scrollbar-gutter: stable both-edges;
 }

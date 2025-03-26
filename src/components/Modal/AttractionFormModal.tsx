@@ -56,10 +56,13 @@ export const AttractionFormModal: React.FC<AttractionFormModalProps> = ({
 
   return (
     <Modal open={isOpen} onOpenChange={() => setIsOpen(false)}>
-      <form className='flex flex-col gap-4 p-6' onSubmit={onClickSubmit}>
+      <form className='flex flex-col gap-4 p-3' onSubmit={onClickSubmit}>
         <Button view="action" size="xs" className="ml-auto button" onClick={() => setIsOpen(false)}>
           <Icon data={Xmark} size={18} />
         </Button>
+        <h2 className="text-sm font-bold">
+          {attraction ? 'Редактирование достопримечательности' : 'Добавление достопримечательности'}
+        </h2>
         <TextInput
           label="Name:"
           type='text'
